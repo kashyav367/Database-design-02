@@ -61,7 +61,7 @@ A fitness influencer started coaching via Instagram DMs and video calls. As the 
 
 ## 📊 ER Diagram
 
-![ER Diagram](./diagram.png)
+![ER Diagram](Screenshot 2026-04-07 224025.png)
 
 ---
 
