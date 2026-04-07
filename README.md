@@ -60,7 +60,7 @@ A fitness influencer started coaching via Instagram DMs and video calls. As the 
 ---
 
 ##  ER Diagram
-![ER Diagram](./fitness%20plateform.png)
+![ER Diagram](./fitness.png)
 
 
 ---
