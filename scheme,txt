@@ -1,0 +1,110 @@
+
+title Fitness Influencer Coaching Platform
+users[icon : person]{
+  user_id serial pk
+  username varchar(50) unique not null
+  email varchar(100) unique not null
+  phone char(15)
+  created_at timestamp
+  updated_at timestamp
+}
+
+trainer {
+ user_id int fk 
+  bio text
+  experience varchar(256)
+  specialization varchar(256)
+  trainer_id int pk
+}
+
+client[icon : person]{
+  user_id int fk 
+  age int
+  gender varchar(10)
+  height decimal
+  weight decimal
+  goal text
+  client_id int pk
+}
+
+plan[icon : clipboard]{
+  plan_id serial pk
+  trainer_id int fk
+  title varchar(100)
+  description text
+  price decimal
+  duration_days int
+  plan_type varchar(50)
+  created_at timestamp 
+}
+
+subscription[icon : repeat]{
+  subscription_id serial pk
+  client_id int fk
+  plan_id  int fk
+  start_date  date
+  end_date    date
+  status     varchar(20)
+}
+
+payment[icon : credit-card]{
+  payment_id serial pk
+  subcription_id int fk
+  amount decimal
+  payment_method varchar(50)
+  payment_date date
+  status  enum(pending,success,failed)not null  
+}
+
+session[icon : video]{
+  session_id serial pk
+  trainer_id  int fk
+  client_id   int fk
+  scheduled_at timestamp
+  duration int
+  session_type varchar(50)
+  status    varchar(20)
+}
+
+check_in[icon : check-circle]{
+  checkin_id  serial pk
+  client_id  int fk
+  subcription_id int fk
+  date date
+  weight decimal
+  notes text
+}
+
+progress[icon:progress]{
+   progrss_id serial pk
+   client_id  int fk
+   date date
+   weight decimal
+   body_fat decimal
+   chest decimal
+   waist decimal
+   biceps decimal
+   remarks text
+}
+
+trainer_note[icon : file-text]{
+  note_id serial pk
+  trainer_id  int fk
+  client_id   int fk
+  date  date
+  note_text    text
+}
+
+users.user_id - trainer.user_id
+users.user_id - client.user_id
+trainer.user_id < plan.trainer_id
+client.user_id < subscription.client_id
+plan.plan_id < subscription.plan_id
+subscription.subscription_id < payment.subcription_id
+trainer.trainer_id < session.trainer_id
+client.client_id < session.client_id
+client.client_id < check_in.client_id
+subscription.subscription_id < check_in.subscription_id
+client.client_id < progress.client_id
+trainer.trainer_id < trainer_note.trainer_id
+client.client_id < trainer_note.client_id
